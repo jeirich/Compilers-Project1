@@ -24,6 +24,8 @@ public:
 	bool keywordWhile();
 	void appendArray();
 	void flushArray();
+	bool isInteger();
+        bool isRealNumber();
 
 };
 
@@ -221,6 +223,67 @@ void Lex::readinput() {
 
 
 }
+
+
+bool Lex::isInteger()
+{
+    int len=30; //size of inputs from file
+    
+    if(len ==0)
+    {
+        return false;
+    }
+   for (int i=0; i<len; i++){
+    
+    c=getchar();
+        
+        if((c != '0' && c != '1' && c != '2'
+           && c != '3' && c != '4' && c != '5'
+           && c != '6' && c != '7' && c != '8'
+           && c != '9' )|| (c == '-' && i >len))
+           {
+               return false;
+           }
+   }
+           
+           return true;
+       
+       
+           }
+
+
+    bool Lex::isRealNumber()
+           {
+               int len=30; //size of inputs from file
+            
+               bool hasDecimal=false;
+               
+               if(len==0)
+               {
+                   return false;
+               }
+               
+               for (int i=0; i<len; i++){
+                   
+                   c =getchar();
+                   
+                   if((c != '0' && c != '1' && c != '2'
+                       && c != '3' && c != '4' && c != '5'
+                       && c != '6' && c != '7' && c != '8'
+                       && c != '9'  && c != '.')|| (c == '-' && i >len))
+                      {
+                          return false;
+                          
+                      }
+                      if(c=='.')
+                      {
+                          hasDecimal=true;
+                          
+                      }
+               }
+                      return hasDecimal;
+    }
+                      
 
 
 int main()
